@@ -1,9 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  price: 9.99
+  id: 1
+  name: 'Bronze Box'
+  price: 19.99
 
 two:
-  name: MyString
-  price: 9.99
+  id: 2
+  name: 'Silver Box'
+  price: 49.0
+
+three:
+  id: 3
+  name: 'Gold Box'
+  price: 99.0

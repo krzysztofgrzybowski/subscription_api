@@ -7,6 +7,7 @@ gem 'rails', '~> 5.2.4', '>= 5.2.4.4'
 gem 'sqlite3'
 gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'active_model_serializers'
 
 group :development, :test do
   gem 'dotenv-rails'
