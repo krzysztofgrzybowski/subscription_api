@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_06_095937) do
+ActiveRecord::Schema.define(version: 2020_10_06_103128) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "address1"
@@ -35,6 +35,21 @@ ActiveRecord::Schema.define(version: 2020_10_06_095937) do
     t.decimal "price", precision: 8, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "subscription_plan_id"
+    t.integer "months_num"
+    t.integer "months_num_reference"
+    t.date "next_renewal_date"
+    t.date "renewal_date_reference"
+    t.string "zipcode"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_subscriptions_on_customer_id"
+    t.index ["subscription_plan_id"], name: "index_subscriptions_on_subscription_plan_id"
   end
 
 end
