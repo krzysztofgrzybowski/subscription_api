@@ -10,12 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_06_103128) do
+ActiveRecord::Schema.define(version: 2020_10_06_112627) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "address1"
     t.string "address2"
     t.string "zipcode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "credit_cards", force: :cascade do |t|
+    t.string "last_digits"
+    t.integer "expiration_month"
+    t.integer "expiration_year"
+    t.string "zipcode"
+    t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -48,6 +58,8 @@ ActiveRecord::Schema.define(version: 2020_10_06_103128) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "credit_card_id"
+    t.index ["credit_card_id"], name: "index_subscriptions_on_credit_card_id"
     t.index ["customer_id"], name: "index_subscriptions_on_customer_id"
     t.index ["subscription_plan_id"], name: "index_subscriptions_on_subscription_plan_id"
   end
