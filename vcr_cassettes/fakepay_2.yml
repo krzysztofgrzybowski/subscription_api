@@ -1,0 +1,55 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://www.fakepay.io/purchase
+    body:
+      encoding: UTF-8
+      string: amount=1999&card_number=4242424242424241&cvv=123&expiration_month=01&expiration_year=2021&zip_code=1234
+    headers:
+      Authorization:
+      - Token token=<FAKEPAY_TOKEN>
+      User-Agent:
+      - Faraday v1.0.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 422
+      message: Unprocessable Entity
+    headers:
+      server:
+      - Cowboy
+      date:
+      - Wed, 07 Oct 2020 16:25:19 GMT
+      connection:
+      - keep-alive
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-permitted-cross-domain-policies:
+      - none
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      content-type:
+      - application/json; charset=utf-8
+      cache-control:
+      - no-cache
+      x-request-id:
+      - fd2a5df6-1ed5-4f44-b7a1-e7e7264e6b85
+      x-runtime:
+      - '0.049288'
+      transfer-encoding:
+      - chunked
+      via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"token":null,"success":false,"error_code":1000001}'
+  recorded_at: Wed, 07 Oct 2020 16:25:20 GMT
+recorded_with: VCR 6.0.0

@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'vcr'
 
 class SubscriptionsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -27,7 +28,9 @@ class SubscriptionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create db records with valid params' do
-    post subscriptions_url, params: @valid_params
+    VCR.use_cassette('fakepay_1') do
+      post subscriptions_url, params: @valid_params
+    end
     assert_response :success
     assert_equal Customer.count, 1
     assert_equal Address.count, 1
@@ -54,7 +57,9 @@ class SubscriptionsControllerTest < ActionDispatch::IntegrationTest
   test 'should return errors for invalid credit card number' do
     invalid_params = @valid_params.clone
     invalid_params[:subscription][:credit_card][:card_number] = '4242424242424241'
-    post subscriptions_url, params: invalid_params
+    VCR.use_cassette('fakepay_2') do
+      post subscriptions_url, params: invalid_params
+    end
     assert_response :unprocessable_entity
     assert_equal response.body, { credit_card: 'Invalid credit card number' }.to_json
   end
@@ -62,7 +67,9 @@ class SubscriptionsControllerTest < ActionDispatch::IntegrationTest
   test 'should return errors for invalid credit card cvv' do
     invalid_params = @valid_params.clone
     invalid_params[:subscription][:credit_card][:cvv] = '000'
-    post subscriptions_url, params: invalid_params
+    VCR.use_cassette('fakepay_3') do
+      post subscriptions_url, params: invalid_params
+    end
     assert_response :unprocessable_entity
     assert_equal response.body, { credit_card: 'CVV failure' }.to_json
   end
@@ -70,7 +77,9 @@ class SubscriptionsControllerTest < ActionDispatch::IntegrationTest
   test 'should not create db records for invalid data' do
     invalid_params = @valid_params.clone
     invalid_params[:subscription][:credit_card][:cvv] = '000'
-    post subscriptions_url, params: invalid_params
+    VCR.use_cassette('fakepay_3') do
+      post subscriptions_url, params: invalid_params
+    end
     assert_equal Customer.count, 0
     assert_equal Address.count, 0
     assert_equal Subscription.count, 0
@@ -78,8 +87,12 @@ class SubscriptionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'creates one customer and two subscriptions for the same email' do
-    post subscriptions_url, params: @valid_params
-    post subscriptions_url, params: @valid_params
+    VCR.use_cassette('fakepay_1') do
+      post subscriptions_url, params: @valid_params
+    end
+    VCR.use_cassette('fakepay_1') do
+      post subscriptions_url, params: @valid_params
+    end
     assert_equal Customer.count, 1
     assert_equal Address.count, 1
     assert_equal Subscription.count, 2

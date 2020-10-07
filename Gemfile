@@ -13,6 +13,7 @@ gem 'faraday'
 group :development, :test do
   gem 'dotenv-rails'
   gem 'pry', '~> 0.13.1'
+  gem 'vcr'
 end
 
 group :development do

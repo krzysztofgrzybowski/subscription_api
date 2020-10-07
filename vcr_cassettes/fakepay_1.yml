@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://www.fakepay.io/purchase
+    body:
+      encoding: UTF-8
+      string: amount=1999&card_number=4242424242424242&cvv=123&expiration_month=01&expiration_year=2021&zip_code=1234
+    headers:
+      Authorization:
+      - Token token=<FAKEPAY_TOKEN>
+      User-Agent:
+      - Faraday v1.0.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - Cowboy
+      date:
+      - Wed, 07 Oct 2020 16:25:20 GMT
+      connection:
+      - keep-alive
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-permitted-cross-domain-policies:
+      - none
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"58476bee512e0e0aa0f95e2bcf6a28f8"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 4a127135-e3b1-44a6-9bc5-c721cdc703ae
+      x-runtime:
+      - '0.026138'
+      transfer-encoding:
+      - chunked
+      via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"token":"a5070744d60900c78e8476831e823f","success":true,"error_code":null}'
+  recorded_at: Wed, 07 Oct 2020 16:25:21 GMT
+recorded_with: VCR 6.0.0
