@@ -7,7 +7,6 @@ class CreateSubscriptions < ActiveRecord::Migration[5.2]
       t.integer :months_num_reference
       t.date :next_renewal_date
       t.date :renewal_date_reference
-      t.string :zipcode
       t.integer :status, default: 0
 
       t.timestamps

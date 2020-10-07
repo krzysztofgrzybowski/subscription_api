@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2020_10_06_112627) do
   create_table "addresses", force: :cascade do |t|
     t.string "address1"
     t.string "address2"
-    t.string "zipcode"
+    t.string "zip_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2020_10_06_112627) do
     t.string "last_digits"
     t.integer "expiration_month"
     t.integer "expiration_year"
-    t.string "zipcode"
+    t.string "zip_code"
     t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -54,7 +54,6 @@ ActiveRecord::Schema.define(version: 2020_10_06_112627) do
     t.integer "months_num_reference"
     t.date "next_renewal_date"
     t.date "renewal_date_reference"
-    t.string "zipcode"
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

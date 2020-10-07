@@ -4,7 +4,7 @@ class CreateCreditCards < ActiveRecord::Migration[5.2]
       t.string :last_digits
       t.integer :expiration_month
       t.integer :expiration_year
-      t.string :zipcode
+      t.string :zip_code
       t.string :token
 
       t.timestamps
