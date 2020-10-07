@@ -1,4 +1,7 @@
 class SubscriptionsController < ApplicationController
+  # POST /subscriptions
+  # Used to create subscription with credit card, customer and his address data if neccessery
+  # Example of valid params in SubscriptionsControllerTest
   def create
     result = Subscriptions::CreateService.new(subscription_params).call
     if result.success?

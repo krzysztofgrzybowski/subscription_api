@@ -1,4 +1,6 @@
 module CreditCards
+  # Service to create credit card record
+  # params: [:expiration_month, :expiration_year, :zip_code, :token, :last_digits]
   class CreateService < BaseService
     def initialize(params)
       @params = params

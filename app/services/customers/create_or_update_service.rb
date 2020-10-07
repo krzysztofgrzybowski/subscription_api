@@ -1,4 +1,6 @@
 module Customers
+  # Service to create customer and his address record, if email exists in DB data will be updated
+  # params: [:firstname:, :lastname, :email, address: [:address1, :address2, :zip_code]]
   class CreateOrUpdateService < BaseService
     def initialize(params)
       @params = params

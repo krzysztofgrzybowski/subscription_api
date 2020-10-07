@@ -1,4 +1,10 @@
 module Subscriptions
+  # Service to create subscription with all neccessary data - credit card, customer and his address
+  # params: [
+  #           :subscription_plan_id,
+  #           credit_card: [:amount, :card_number: :cvv, :expiration_month, :expiration_year, :zip_code],
+  #           customer: [:firstname, :lastname, :email, address: [:address1, :address2, :zip_code]]
+  #         ]
   class CreateService < BaseService
     def initialize(params)
       @params = params
@@ -12,9 +18,7 @@ module Subscriptions
       result = customer_service.validate
       return failure(result.payload) unless result.success?
 
-      result = Payments::ProcessService.new(
-        @credit_card_params.merge(amount: @subscription_plan.price_in_cents)
-      ).call
+      result = Payments::ProcessService.new(@credit_card_params.merge(amount: @subscription_plan.price_in_cents)).call
       return failure(result.payload) unless result.success?
 
       customer_id = customer_service.call.payload[:id]

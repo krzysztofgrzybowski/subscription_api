@@ -1,4 +1,7 @@
 module Payments
+  # Service to process payment using Fakepay gateway
+  # params: [:amount, :card_number: :cvv, :expiration_month, :expiration_year, :zip_code]
+  #     or: [:amount, :token]
   class ProcessService < BaseService
     def initialize(params)
       @params = params
